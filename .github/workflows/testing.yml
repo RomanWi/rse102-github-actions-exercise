@@ -26,6 +26,12 @@ jobs:
         run: pip install pytest
       - name: "Install coverage"
         run: pip install coverage
+      - name: "Install numpy"
+        run: pip install numpy
+      - name: "Install matplotlib"
+        run: pip install matplotlib
+      - name: "Install unittest"
+        run: pip install unittest
       - name: "Run test with pytest and coverage"
         run: coverage run -m pytest
       - name: "Upload artifact"
