@@ -16,11 +16,14 @@ jobs:
         run: black --check .
   test:
     runs-on: ubuntu-latest
+    needs: style_check
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v2
         with:
           python-version: '3.8.10'
+      - name: "Install pytest"
+        run: pip install pytest
       - name: "Install coverage"
         run: pip install coverage
       - name: "Run test with pytest and coverage"
@@ -33,6 +36,7 @@ jobs:
           retention-days: 1
   coverage_report:
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: "coverage-report"
         run: coverage report
