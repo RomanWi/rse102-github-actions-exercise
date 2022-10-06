@@ -1,0 +1,13 @@
+# auto-saved files
+*~
+
+# hidden files
+.coverage
+
+# always consider files containing source code regardless of their name
+!*.cc
+!*.hh
+!*.c
+!*.h
+!*.sh
+!*.py

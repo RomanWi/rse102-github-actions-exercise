@@ -1,0 +1,46 @@
+name: Workflow-for-diffusion-test
+
+on: [push]
+
+jobs:
+  style_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v2
+      with:
+        python-version: '3.8.10'
+      - name: "Install style checker"
+        run: pip install black
+      - name: "Run style check"
+        run: black --check .
+  test:
+    runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8.10'
+      - name: "Install coverage"
+        run: pip install coverage
+      - name: "Run test with pytest and coverage"
+        run: coverage run -m pytest
+      - name: "Upload artifact"
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-artifact
+          path: .coverage
+          retention-days: 1
+  coverage_report:
+    runs: ubuntu-latest
+      steps:
+          - name: "coverage-report"
+            run: coverage report
+          - name: "coverage to xml"
+            run: coverage xml
+          - name: "Upload artifact"
+            uses: actions/upload-artifact@v2
+            with:
+              name: coverage-xml
+              path: coverage.xml
+              retention-days: 14
