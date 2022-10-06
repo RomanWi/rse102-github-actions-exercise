@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.8.10'
       - name: "Install style checker"
@@ -27,7 +27,7 @@ jobs:
       - name: "Run test with pytest and coverage"
         run: coverage run -m pytest
       - name: "Upload artifact"
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: coverage-artifact
           path: .coverage
@@ -43,7 +43,7 @@ jobs:
       - name: "Install coverage"
         run: pip install coverage
       - name: "Download artifact"
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: coverage-artifact
       - name: "coverage-report"
@@ -51,7 +51,7 @@ jobs:
       - name: "coverage to xml"
         run: coverage xml
       - name: "Upload artifact"
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: coverage-xml
           path: coverage.xml
