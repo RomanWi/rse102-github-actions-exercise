@@ -21,15 +21,15 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: '3.8.10'
-        - name: "Install coverage"
-          run: pip install coverage
-        - name: "Run test with pytest and coverage"
-          run: coverage run -m pytest
-        - name: "Upload artifact"
-          uses: actions/upload-artifact@v2
-          with:
-            name: coverage-artifact
-            path: .coverage
+      - name: "Install coverage"
+        run: pip install coverage
+      - name: "Run test with pytest and coverage"
+        run: coverage run -m pytest
+      - name: "Upload artifact"
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-artifact
+          path: .coverage
           retention-days: 1
   coverage_report:
     runs: ubuntu-latest
