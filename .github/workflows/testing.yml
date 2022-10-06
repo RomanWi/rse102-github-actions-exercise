@@ -32,7 +32,7 @@ jobs:
           path: .coverage
           retention-days: 1
   coverage_report:
-    runs: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: "coverage-report"
         run: coverage report
